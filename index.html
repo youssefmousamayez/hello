@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Find The Real YES 😏</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      overflow: hidden;
+      background: linear-gradient(135deg, #ff758c, #ff7eb3);
+      font-family: Arial;
+      text-align: center;
+      color: white;
+    }
+
+    h2 {
+      margin-top: 20px;
+    }
+
+    #buttonsContainer {
+      display: grid;
+      grid-template-columns: repeat(10, 1fr);
+      gap: 8px;
+      padding: 20px;
+      position: relative;
+      z-index: 2;
+    }
+
+    button {
+      padding: 8px;
+      border: none;
+      border-radius: 10px;
+      background: white;
+      color: #ff4b7d;
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+    }
+
+    /* الفيديو مختفي في الأول */
+    #videoContainer {
+      position: fixed;
+      bottom: 50px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80%;
+      max-width: 900px;
+      display: none;
+      z-index: 10;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    }
+
+    .float {
+      position: absolute;
+      font-size: 30px;
+      animation: floatUp 4s linear forwards;
+      z-index: 5;
+    }
+
+    @keyframes floatUp {
+      from { transform: translateY(0); opacity: 1; }
+      to { transform: translateY(-700px); opacity: 0; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, 50px); }
+      to { opacity: 1; transform: translate(-50%, 0); }
+    }
+  </style>
+</head>
+
+<body>
+
+<h2 id="text">Press YES to unlock your surprise 😏</h2>
+
+<div id="buttonsContainer"></div>
+
+<div id="videoContainer">
+  <video controls autoplay>
+    <source src="VID-20260214-WA0083.mp4" type="video/mp4">
+  </video>
+</div>
+
+<script>
+  const container = document.getElementById("buttonsContainer");
+  const correctIndex = Math.floor(Math.random() * 100);
+
+  for (let i = 0; i < 100; i++) {
+    let btn = document.createElement("button");
+    btn.innerText = "YES";
+
+    btn.onclick = function() {
+      if (i === correctIndex) {
+        launchCelebration();
+      } else {
+        btn.disabled = true;
+        btn.style.opacity = 0.4;
+        document.getElementById("text").innerHTML = "Nope 😏 Keep trying...";
+      }
+    };
+
+    container.appendChild(btn);
+  }
+
+  function launchCelebration() {
+    document.getElementById("text").innerHTML = "You found the REAL YES 🎉";
+    container.style.display = "none";
+
+    for (let i = 0; i < 60; i++) {
+      let item = document.createElement("div");
+      item.innerHTML = "🎉";
+      item.className = "float";
+      item.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(item);
+    }
+
+    for (let i = 0; i < 40; i++) {
+      let heart = document.createElement("div");
+      heart.innerHTML = "💖";
+      heart.className = "float";
+      heart.style.left = Math.random() * window.innerWidth + "px";
+      document.body.appendChild(heart);
+    }
+
+    for (let i = 0; i < 30; i++) {
+      let balloon = document.createElement("div");
+      balloon.innerHTML = "🎈";
+      balloon.className = "float";
+      balloon.style.left = Math.random() * window.innerWidth + "px";
+      balloon.style.bottom = "-50px";
+      document.body.appendChild(balloon);
+    }
+
+    setTimeout(() => {
+      document.getElementById("videoContainer").style.display = "block";
+    }, 800);
+  }
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
